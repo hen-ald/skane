@@ -45,10 +45,16 @@ Figges_hus <- st_sf(geometry = st_sfc(st_point(c(377014, 6164939)), crs = 3006))
 
 Andreas_hus <- st_sf(geometry = st_sfc(st_point(c(376830, 6164085)), crs = 3006))
 
+# andrees hus SWEREF99 TM (nord, öst)
+# 6164985, 377274
+
+Andrees_hus <- st_sf(geometry = st_sfc(st_point(c(377274, 6164985)), crs = 3006))
+
 mapview(vastra_skane, col.regions = colors, at = breaks, alpha.regions = 0.2)+
   mapview(ostra_skane, col.regions = colors, at = breaks, alpha.regions = 0.2)+
   mapview(Figges_hus, col.regions = 'pink', pch = 20, cex = 10, popup = 'Figges hus')+
-  mapview(Andreas_hus, col.regions = 'green', pch = 20, cex = 10, popup = 'Andreas hus')
+  mapview(Andreas_hus, col.regions = 'green', pch = 20, cex = 10, popup = 'Andreas hus')+
+  mapview(Andrees_hus, col.regions = 'blue', pch = 20, cex = 10, popup = 'Andrees hus')
 
 # läs in naturvard_ln12.gpkg från C:\Users\henri\r\data\naturvard_ln12
 
@@ -82,7 +88,8 @@ mapview(tatort, col.regions = "red", alpha.regions = 0.5, legend = FALSE, hide =
   mapview(Figges_hus, col.regions = 'azure', pch = 10, cex = 5, popup = 'Figges hus', legend = FALSE)+
   mapview(vastra_skane, col.regions = colors, at = breaks, alpha.regions = 0.3, legend = FALSE, homebutton = FALSE)+
   mapview(ostra_skane, col.regions = colors, at = breaks, alpha.regions = 0.3, homebutton = FALSE)+
-  mapview(Andreas_hus, col.regions = 'green', pch = 20, cex = 5, popup = 'Andreas hus')
+  mapview(Andreas_hus, col.regions = 'green', pch = 20, cex = 5, popup = 'Andreas hus')+
+  mapview(Andrees_hus, col.regions = 'blue', pch = 20, cex = 5, popup = 'Andrees hus')
 
 
 
