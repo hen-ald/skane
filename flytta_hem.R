@@ -3,6 +3,7 @@ library(sf)
 library(dplyr)
 library(mapview)
 library(raster)
+library(tidyverse)
 # läs in data från projektet C:\Users\henri\r\test_sf
 
 deso <- st_read("C:/Users/henri/r/test_sf/DESO_2018_v2.gpkg")
@@ -82,6 +83,37 @@ smaort <- st_read(smaort_fil, layer = "So2020_SR99TM")
 smaort <- smaort %>% filter(LAN == "12") |> 
   st_centroid()
 
+
+
+# läs in församlingar  forsamlingar_2024-01-01.shp från C:\Users\henri\r\data\forsamlingar_2024-01-01
+
+forsamlingar_fil <- "C:/Users/henri/r/data/forsamlingar_2024-01-01/forsamlingar_2024-01-01.shp"
+forsamlingar <- st_read(forsamlingar_fil)
+
+forsamlingar_skane <- forsamlingar %>%
+  filter(str_detect(lkfkod, "^12"))
+
+mapview(forsamlingar_skane, zcol = "namn", label = "namn")
+
+# läs in C:\Users\henri\r\data\ekonomiska_enheter_2024-01-01\ekonomiska_enheter_2024-01-01.shp
+
+# eko_enhet_fil <- "C:/Users/henri/r/data/ekonomiska_enheter_2024-01-01/ekonomiska_enheter_2024-01-01.shp"
+# eko_enhet <- st_read(eko_enhet_fil)
+# mapview(eko_enhet)+
+
+# läs in C:\Users\henri\r\data\kontrakt_2024-01-01\kontrakt_2024-01-01.shp
+
+kontrakt_fil <- "C:/Users/henri/r/data/kontrakt_2024-01-01/kontrakt_2024-01-01.shp"
+kontrakt <- st_read(kontrakt_fil) |> 
+  filter(str_detect(skpkod, "^07"))
+mapview(kontrakt, zcol = "namn", label = "namn") 
+
+# läs in C:\Users\henri\r\data\stift_2024-01-01\stift_2024-01-01.shp
+
+stift_fil <- "C:/Users/henri/r/data/stift_2024-01-01/stift_2024-01-01.shp"
+stift <- st_read(stift_fil) |> 
+  filter(str_detect(skpkod, "^07"))
+
 mapview(tatort, col.regions = "red", alpha.regions = 0.5, legend = FALSE, hide =TRUE, homebutton = FALSE, cex = "BEF", label = "TATORT")+
   mapview(smaort, zcol = "SMAORT", col.regions = "pink", alpha.regions = 0.5, legend = FALSE, hide =TRUE, homebutton = FALSE, cex = 2.5)+
   mapview(skyddad_natur, zcol = "objekttyp", hide =TRUE, legend = FALSE, homebutton = FALSE)+
@@ -89,8 +121,14 @@ mapview(tatort, col.regions = "red", alpha.regions = 0.5, legend = FALSE, hide =
   mapview(ostra_skane, col.regions = colors, at = breaks, alpha.regions = 0.3, homebutton = FALSE, layer.name = "Meter över havet")+
   mapview(Andreas_hus, col.regions = 'green', pch = 20, cex = 7, popup = 'Andreas hus')+
   mapview(Figges_hus, col.regions = 'yellow', pch = 20, cex = 7, popup = 'Figges hus')+
-  mapview(Andrees_hus, col.regions = 'blue', pch = 20, cex = 7, popup = 'Andrees hus')
+  mapview(Andrees_hus, col.regions = 'blue', pch = 20, cex = 7, popup = 'Andrees hus')+
+  mapview(stift, zcol = "namn", label = "namn", alpha.regions = 0.1, hide = TRUE, homebutton = FALSE)+
+  mapview(kontrakt, zcol = "namn", label = "namn", alpha.regions = 0.1, hide = TRUE, homebutton = TRUE, burst = "namn", legend = FALSE)+
+  mapview(forsamlingar_skane, zcol = "namn", label = "namn", alpha.regions = 0.1, hide = TRUE, homebutton = FALSE, legend = FALSE)
 
-
-
-
+# # läs in C:\Users\henri\r\data\byggnadsverk_ln12\byggnadsverk_ln12.gpkg
+# 
+# byggnadsverk_fil <- "C:/Users/henri/r/data/byggnadsverk_ln12/byggnadsverk_ln12.gpkg"
+# st_layers(byggnadsverk_fil)
+# byggnadsverk <- st_read(byggnadsverk_fil, layer = "byggnad")
+# mapview(byggnadsverk, zcol = "objekttyp")  
