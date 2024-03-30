@@ -85,11 +85,11 @@ smaort <- smaort %>% filter(LAN == "12") |>
 mapview(tatort, col.regions = "red", alpha.regions = 0.5, legend = FALSE, hide =TRUE, homebutton = FALSE, cex = "BEF", label = "TATORT")+
   mapview(smaort, zcol = "SMAORT", col.regions = "pink", alpha.regions = 0.5, legend = FALSE, hide =TRUE, homebutton = FALSE, cex = 2.5)+
   mapview(skyddad_natur, zcol = "objekttyp", hide =TRUE, legend = FALSE, homebutton = FALSE)+
-  mapview(Figges_hus, col.regions = 'azure', pch = 10, cex = 5, popup = 'Figges hus', legend = FALSE)+
   mapview(vastra_skane, col.regions = colors, at = breaks, alpha.regions = 0.3, legend = FALSE, homebutton = FALSE)+
-  mapview(ostra_skane, col.regions = colors, at = breaks, alpha.regions = 0.3, homebutton = FALSE)+
-  mapview(Andreas_hus, col.regions = 'green', pch = 20, cex = 5, popup = 'Andreas hus')+
-  mapview(Andrees_hus, col.regions = 'blue', pch = 20, cex = 5, popup = 'Andrees hus')
+  mapview(ostra_skane, col.regions = colors, at = breaks, alpha.regions = 0.3, homebutton = FALSE, layer.name = "Meter över havet")+
+  mapview(Andreas_hus, col.regions = 'green', pch = 20, cex = 7, popup = 'Andreas hus')+
+  mapview(Figges_hus, col.regions = 'yellow', pch = 20, cex = 7, popup = 'Figges hus')+
+  mapview(Andrees_hus, col.regions = 'blue', pch = 20, cex = 7, popup = 'Andrees hus')
 
 
 
